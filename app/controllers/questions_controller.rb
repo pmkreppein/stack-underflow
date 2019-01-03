@@ -8,6 +8,8 @@ class QuestionsController < ApplicationController
     end
 
     def create
-        raise params.inspect
+        q = Question.new(:question_text => params[:question][:question_text])
+        q.save
+        redirect_to questions_path
     end
 end

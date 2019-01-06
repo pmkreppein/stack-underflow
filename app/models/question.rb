@@ -5,5 +5,5 @@ class Question < ApplicationRecord
     CATEGORY = ["Ruby/Rails", "JavaScript", "Front End Frameworks", "Native Mobile Development", "JS Mobile Development", "Game/VR Development"]
 
     validates :category, inclusion: CATEGORY
-    validates :question_text, presence: true
+    validates :question_text, :presence => true
 end

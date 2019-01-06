@@ -1,5 +1,14 @@
 <%= form_for @question do |f|%>
 <h4> Ask Your Question: </h4>
+<h5>Category: </h5>
+<%= f.select(:category, Question::CATEGORY) %>
+<br><br>
 <%= f.text_area :question_text %>
 <%= f.submit %>
 <%end%>
+
+<ul>
+  <% @question.errors.full_messages.each do |msg| %>
+  <li><%= msg %></li>
+  <% end %>
+</ul>

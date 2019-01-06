@@ -8,8 +8,19 @@ class QuestionsController < ApplicationController
     end
 
     def create
-        q = Question.new(:question_text => params[:question][:question_text])
-        q.save
-        redirect_to questions_path
+        
+        question = Question.new(question_params)
+        if question.save
+            redirect_to question_path(question)
+        else 
+            @question = question
+            render :new
+        end
+    end
+
+    private
+
+    def question_params # strong parameters
+      params.require(:question).permit(:category, :question_text)
     end
 end

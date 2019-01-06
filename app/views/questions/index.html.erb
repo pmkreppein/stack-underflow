@@ -1,5 +1,7 @@
 <% @questions.each do |q| %>
-  <p> <%= q.question_text %> </p>
+  <p><%= link_to( q.question_text, question_path(q)) %></p>
+
+  
 <% end %> 
 
-<%= link_to 'Ask a Question', new_question_path %>
+<h2><%= link_to 'Ask a Question', new_question_path %> </h2>

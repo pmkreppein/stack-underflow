@@ -1,0 +1,23 @@
+<h4> <%= @question.question_text %> </h4>
+<p> <%= @question.category %> </p>
+
+<br>
+<%= form_for [@question, @answer] do |f| %>
+  <p>
+    <b>Have an answer to this question?  Drop it here!</b><br>
+    <%= f.text_area :answer_text %>
+  </p>
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>
+
+<ul>
+  <% @question.errors.full_messages.each do |msg| %>
+  <li><%= msg %></li>
+  <% end %>
+</ul>
+
+<% @answers.each do |a| %>
+  <p><%= a.answer_text %></p>
+<% end %> 

@@ -18,9 +18,17 @@ class QuestionsController < ApplicationController
         end
     end
 
+    def show
+        @answer = Answer.new()
+        @question = Question.find(params[:id])
+        @answers = Answer.where({question_id: params[:id]})
+        render :show
+    end
     private
 
     def question_params # strong parameters
       params.require(:question).permit(:category, :question_text)
     end
+
+
 end

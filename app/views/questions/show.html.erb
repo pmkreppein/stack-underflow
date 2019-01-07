@@ -19,5 +19,6 @@
 </ul>
 
 <% @answers.each do |a| %>
+  <h5> <%=User.find(a.user_id).name%> wrote: </h5>
   <p><%= a.answer_text %></p>
 <% end %> 

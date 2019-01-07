@@ -6,7 +6,7 @@ class AnswersController < ApplicationController
         if @answer.save
             redirect_to question_path(@question)
         else 
-            @answers = Answer.where({question_id: params[:id]})
+            @answers = Answer.where({question_id: params[:question_id]})
             render :"questions/show"
         end
     end

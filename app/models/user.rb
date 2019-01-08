@@ -5,7 +5,7 @@ class User < ApplicationRecord
     validates :name, :presence => true
     validates :email, :presence => true
     validates :email, :uniqueness => true
-   
+ 
 
     def self.find_by_email(email)
         User.where(:email => email).first

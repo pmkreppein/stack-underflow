@@ -1,9 +1,8 @@
 class AnswersController < ApplicationController
     def create
-        raise @current_user 
         @question = Question.find(params[:question_id])
         @answer = @question.answers.build(answer_params)
-        @answer.user_id = session[:id]
+        @answer.user_id = session[:user_id]
         if @answer.save
             redirect_to question_path(@question)
         else 

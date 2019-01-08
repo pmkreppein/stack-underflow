@@ -5,38 +5,57 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
- </head>
-<div class="container">
+  </head>
+  <div class="container">
 
-  <nav class="navbar has-shadow">
-    <div class="container">
-        <div class="navbar-brand"><a class="navbar-item" href="/">StackUnderflow</a>
-        <div class="navbar-burger burger" data-target="navMenu"><span></span><span></span><span></span></div>
-    </div>
-    <div class="navbar-menu" id="navMenu">
-        <div class="navbar-end">
-            <div class="navbar-item has-dropdown is-hoverable"><a class="navbar-link">Account</a>
-            <div class="navbar-dropdown"><a class="navbar-item">Dashboard</a><a class="navbar-item">Profile</a><a class="navbar-item">Settings</a>
-            <hr class="navbar-divider" />
-            <div class="navbar-item">Logout</div>
+    <nav class="navbar has-shadow">
+      <div class="container">
+        <div class="navbar-brand">
+          <a class="navbar-item" href="/">StackUnderflow</a>
+          <div class="navbar-burger burger" data-target="navMenu">
+            <span></span>
+            <span></span>
+            <span></span></div>
         </div>
-    </div>
-</div>
-</div>
-</div>
-</nav>
-    <% if logged_in?%>
-    <p> Hello, <%= current_user.name%> </p>
-    <% end %>
 
-      <% if !logged_in?%>
-      <a href="/login">Log In!</a>
-      <% end %>
+        <% if logged_in?%>
+          <div class="navbar-menu" id="navMenu">
+            <div class="navbar-end">
+              <div class="navbar-item has-dropdown is-hoverable">
+                <a class="navbar-link">Account</a>
+                <div class="navbar-dropdown">
+                  <a class="navbar-item">Hello,
+                    <%= current_user.name%></a>
+                  <a href="/logout" class="navbar-item">Logout</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+
+        <% if !logged_in?%>
+          <div class="navbar-menu" id="navMenu">
+            <div class="navbar-end">
+              <div class="navbar-item has-dropdown is-hoverable">
+                <a class="navbar-link">Account</a>
+                <div class="navbar-dropdown">
+                  <a href="/login" class="navbar-item">Login Local</a>
+                  <a href="/github" class="navbar-item">Login Github</a>
+                  <a href="/users/new" class="navbar-item">Create Account</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+
+      </div>
+    </nav>
+
     <body>
 
       <%= yield %>
     </body>
-</div>
+  </div>
 </html>

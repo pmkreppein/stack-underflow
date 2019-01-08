@@ -1,46 +1,12 @@
-Models:
+-Create answer on question Show page
+---Question has many answers, answer belongs to question
 
-User
-    has_many :questions
-    has_many :comments, :through => :questions
+--Edit answer
+--Edit Question
 
-Comments
-    belongs_to :user
-    belongs_to :question
+--Vote on answer
 
-Question
-    has_many :comments 
-    has_many :users, :through =>
+-Home page details, cleanup, layout
 
-
-
-
-
-class User < ApplicationRecord
-  has_many :answers
-  has_many :questions, through: :answers
-end
- 
-class Answer < ApplicationRecord
-  belongs_to :user
-  belongs_to :question
-end
- 
-class Question < ApplicationRecord
-  has_many :answers
-  has_many :users, :through => :answers
-
-User 
-    t.string :name
-    t.string :email
-    t.timestamps
-Answer
-    t.belongs_to :user
-    t.belongs_to :question
-    t.text :answer_text
-    t.timestamps
-
-Question
-    t.integer :created_by_user
-    t.text :question_text
-    t.timestamps
+-auth
+-oauth

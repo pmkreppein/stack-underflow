@@ -1,5 +1,6 @@
 class AnswersController < ApplicationController
     def create
+        raise @current_user 
         @question = Question.find(params[:question_id])
         @answer = @question.answers.build(answer_params)
         @answer.user_id = session[:id]

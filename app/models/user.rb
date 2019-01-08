@@ -8,7 +8,7 @@ class User < ApplicationRecord
    
 
     def self.find_by_email(email)
-        User.where(:email => email)
+        User.where(:email => email).first
     end
 
     

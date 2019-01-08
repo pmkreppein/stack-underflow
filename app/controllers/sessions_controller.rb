@@ -4,8 +4,13 @@ class SessionsController < ApplicationController
     end
 
     def create
-        user = User.find_by(login_params[:email])
-        
+        user = User.find_by_email(login_params[:email])
+        if user && user.authenticate(login_params[:password])
+            session[:user_id] = user.id
+            redirect_to questions_path
+        else
+            redirect_to question_path
+        end
     end
 
     def destroy

@@ -11,8 +11,5 @@ class User < ApplicationRecord
         User.where(:email => email).first
     end
 
-    def self.get_user_name(user)
-      User.where(:id => user).name
-    end
 
 end

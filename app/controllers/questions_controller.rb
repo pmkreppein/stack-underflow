@@ -8,11 +8,12 @@ class QuestionsController < ApplicationController
     end
 
     def create
-        
+
         question = Question.new(question_params)
+        question.created_by_user = session[:user_id]
         if question.save
             redirect_to question_path(question)
-        else 
+        else
             @question = question
             render :new
         end

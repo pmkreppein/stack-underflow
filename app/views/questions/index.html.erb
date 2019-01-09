@@ -1,6 +1,18 @@
+
 <% @questions.each do |q| %>
-  <p><%= link_to( q.question_text, question_path(q)) %></p>
+  <div class="box">
+  <div class="columns">
+    <div class="column is-one-quarter">
+    On <%= q.created_at.to_formatted_s(:short) %>
+     <%= q.created_by_user.name %> asked:
+    </div>
+    <div class="column is-three-quarters">
+        <div class="content"><p><%= link_to( q.question_text, question_path(q)) %></p></div>
+    </div>
+  </div>
 
-  
-<% end %> 
 
+
+  </div>
+
+<% end %>

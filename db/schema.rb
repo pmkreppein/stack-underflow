@@ -23,11 +23,12 @@ ActiveRecord::Schema.define(version: 2019_01_06_015048) do
   end
 
   create_table "questions", force: :cascade do |t|
-    t.integer "created_by_user"
+    t.integer "user_id"
     t.text "question_text"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "category"
+    t.index ["user_id"], name: "index_questions_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

@@ -4,7 +4,7 @@
   <div class="columns">
     <div class="column is-one-quarter">
     On <%= q.created_at.to_formatted_s(:short) %>
-     <%= q.created_by_user.name %> asked:
+     <%= User.get_user_name(q.created_by_user) %> asked:
     </div>
     <div class="column is-three-quarters">
         <div class="content"><p><%= link_to( q.question_text, question_path(q)) %></p></div>

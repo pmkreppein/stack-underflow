@@ -1,14 +1,26 @@
-<h4> <%= @question.question_text %> </h4>
-<p> <%= @question.category %> </p>
+
+<div class="box">
+  <div class="columns">
+    <div class="column is-one-third">
+      <span class="tag is-info"><%= @question.created_at.to_formatted_s(:short) %></span>
+      <span class="tag is-dark">User: <%= @question.user.name %></span>
+      <span class="tag is-primary">Category: <%= @question.category%></span>
+    </div>
+    <div class="column is-two-thirds">
+      <%= @question.question_text %>
+    </div>
+  </div>
+</div>
+
 
 <br>
 <%= form_for [@question, @answer] do |f| %>
   <p>
     <b>Have an answer to this question?  Drop it here!</b><br>
-    <%= f.text_area :answer_text %>
+    <%= f.text_area :answer_text, {:class => "textarea is-primary"} %>
   </p>
   <p>
-    <%= f.submit %>
+    <%= f.submit "Save Answer", {:class => "button is-success"} %>
   </p>
 <% end %>
 
@@ -18,7 +30,15 @@
   <% end %>
 </ul>
 
+<span class="tag is-warning">Answers:</span>
 <% @answers.each do |a| %>
-  <h5> <%=User.find(a.user_id).name%> wrote: </h5>
+<div class="box">
+  <div class="column is-one-third">
+    <span class="tag is-light">User: <%= a.user.name %></span>
+    <span class="tag is-info">User: <%= a.created_at.to_formatted_s(:short) %></span>
+  </div>
+  <div class="column is-two-thirds">
   <p><%= a.answer_text %></p>
-<% end %> 
+  </div>
+</div>
+<% end %>

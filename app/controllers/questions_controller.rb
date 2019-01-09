@@ -1,4 +1,5 @@
 class QuestionsController < ApplicationController
+  before_action :auth_required, except: :index
     def index
         @questions = Question.all
     end

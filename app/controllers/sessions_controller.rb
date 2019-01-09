@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
             session[:user_id] = user.id
             redirect_to questions_path
         else
-            redirect_to question_path
+            redirect_to "/login"
         end
     end
 
@@ -18,7 +18,7 @@ class SessionsController < ApplicationController
         redirect_to questions_path
     end
 
-    private 
+    private
 
     def login_params
         params.require(:user).permit(:email, :password)

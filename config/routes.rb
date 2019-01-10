@@ -4,7 +4,6 @@ Rails.application.routes.draw do
   end
 
   resources :users, only: [:new, :create]
-
   get 'auth/:provider/callback' => 'sessions#create'
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'

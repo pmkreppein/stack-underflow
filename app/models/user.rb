@@ -11,5 +11,13 @@ class User < ApplicationRecord
         User.where(:email => email).first
     end
 
+    def self.from_omniauth(access_token)
+      data = access_token.info
+      user = User.where(email: data['email']).first
+        unless user
+         user = User.create(name: data['name'], email: data['email'], password: SecureRandom.hex(8))
+        end
+       user
+    end
 
 end

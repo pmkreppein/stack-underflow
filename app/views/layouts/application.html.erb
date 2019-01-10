@@ -8,64 +8,24 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
   <div class="container">
-
     <nav class="navbar has-shadow">
       <div class="container">
-        <div class="navbar-brand">
-          <a class="navbar-item" href="/">StackUnderflow</a>
-          <div class="navbar-burger burger" data-target="navMenu">
-            <span></span>
-            <span></span>
-            <span></span></div>
-        </div>
+        <%= render 'layouts/brand' %>
+
 
         <% if logged_in?%>
-        <div class="navbar-menu" id="navMenu">
-          <div class="navbar-end">
-            <div class="navbar-item has-dropdown is-hoverable">
-              <a class="navbar-link">Questions</a>
-              <div class="navbar-dropdown">
-                <a href="/questions/new" class="navbar-item">Ask a Question</a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-          <div class="navbar-menu" id="navMenu">
-            <div class="navbar-end">
-              <div class="navbar-item has-dropdown is-hoverable">
-                <a class="navbar-link">Account</a>
-                <div class="navbar-dropdown">
-                  <a class="navbar-item">Hello,
-                    <%= current_user.name%></a>
-                  <a href="/logout" class="navbar-item">Logout</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        <% end %>
-
-        <% if !logged_in?%>
-          <div class="navbar-menu" id="navMenu">
-            <div class="navbar-end">
-              <div class="navbar-item has-dropdown is-hoverable">
-                <a class="navbar-link">Account</a>
-                <div class="navbar-dropdown">
-                  <a href="/login" class="navbar-item">Login Local</a>
-                  <a href="/auth/google_oauth2" class="navbar-item">Login with Google</a>
-                  <a href="/users/new" class="navbar-item">Create Account</a>
-                </div>
-              </div>
-            </div>
-          </div>
+          <%= render 'layouts/question_menu' %>
+          <%= render 'layouts/logged_in' %>
+        <% else %>
+          <%= render 'layouts/not_logged_in' %>
         <% end %>
 
       </div>
     </nav>
 
     <body>
-
       <%= yield %>
     </body>
+
   </div>
 </html>

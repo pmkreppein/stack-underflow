@@ -1,6 +1,5 @@
 <% @questions.each do |q| %>
   <div class="box">
-
     <div class="columns">
       <div class="column is-one-quarter">
         <span class="tag is-info"><%= q.created_at.to_formatted_s(:short) %></span>
@@ -17,7 +16,5 @@
         <a href="<%=question_path(q)%>" class="button is-success">View/Answer</a>
       </div>
     </div>
-
   </div>
-
 <% end %>

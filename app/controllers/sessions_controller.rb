@@ -4,14 +4,18 @@ class SessionsController < ApplicationController
     end
 
     def create
-        user = User.find_by_email(login_params[:email])
-        if user && user.authenticate(login_params[:password])
-            session[:user_id] = user.id
-            redirect_to questions_path
+      if auth_hash = request.env["omniauth.auth"]
+        raise auth_hash.inspect
+      else
+          user = User.find_by_email(login_params[:email])
+          if user && user.authenticate(login_params[:password])
+              session[:user_id] = user.id
+              redirect_to questions_path
         else
             redirect_to "/login"
         end
     end
+  end
 
     def destroy
         session.destroy

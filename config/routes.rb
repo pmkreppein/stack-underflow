@@ -3,6 +3,10 @@ Rails.application.routes.draw do
     resources :answers, only: [:create]
   end
 
+  resources :users do
+    resources :questions, only: [:index]
+  end
+
   resources :users, only: [:new, :create]
   get 'auth/:provider/callback' => 'sessions#create'
   get '/login' => 'sessions#new'

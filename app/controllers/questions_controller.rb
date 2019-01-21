@@ -1,8 +1,12 @@
 class QuestionsController < ApplicationController
   before_action :auth_required, except: :index
   def index
+    if params[:user_id] && user = User.find_by_id(params[:user_id])
+        @questions = user.questions
+    else
     @questions = Question.all
   end
+end
 
   def new
     @question = Question.new
@@ -23,7 +27,7 @@ class QuestionsController < ApplicationController
   def show
     @answer = Answer.new
     @question = Question.find(params[:id])
-    @answers = Answer.where(question_id: params[:id])
+    ##@answers = Answer.where(question_id: params[:id])
     render :show
   end
 

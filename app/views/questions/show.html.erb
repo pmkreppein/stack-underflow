@@ -31,10 +31,10 @@
 </ul>
 
 <span class="tag is-warning">Answers:</span>
-<% @answers.each do |a| %>
+<% @question.answers.each do |a| %>
 <div class="box">
   <div class="column is-one-third">
-    <span class="tag is-light">User: <%= a.user.name %></span>
+    <span class="tag is-light"> <a href="<%= user_questions_path(a.user) %>">User: <%= a.user.name %></a></span>
     <span class="tag is-info">User: <%= a.created_at.to_formatted_s(:short) %></span>
   </div>
   <div class="column is-two-thirds">

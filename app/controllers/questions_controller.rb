@@ -2,15 +2,19 @@ class QuestionsController < ApplicationController
   before_action :auth_required, except: :index
   def index
     if params[:user_id] && user = User.find_by_id(params[:user_id])
-        @questions = user.questions
+      @questions = user.questions
+      respond_to do |f|
+        f.json {render json: @questions, :each_serializer => QuestionsSerializer}
+        f.html
+      end
     else
-    @questions = Question.all
+      @questions = Question.all
+      respond_to do |f|
+        f.json {render json: @questions}
+        f.html
+      end
   end
 end
-
-  def new
-    @question = Question.new
-  end
 
   def create
     user = current_user

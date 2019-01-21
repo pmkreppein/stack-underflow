@@ -1,20 +1,27 @@
-<% @questions.each do |q| %>
-  <div class="box">
-    <div class="columns">
-      <div class="column is-one-quarter">
-        <span class="tag is-info"><%= q.created_at.to_formatted_s(:short) %></span>
-        <%= q.user.name %>
-        asked:
-      </div>
-      <div class="column is-half">
-        <div class="content">
-          <p><%=q.question_text%></p>
-        </div>
-      </div>
+<div id="questions">
 
-      <div class="column is-one-quarter">
-        <a href="<%=question_path(q)%>" class="button is-success">View/Answer</a>
-      </div>
-    </div>
-  </div>
-<% end %>
+</div>
+
+<script id="question-list-template" type="text/x-handlebars-template">
+{{#each this}}
+ <div class="box">
+   <div class="columns">
+     <div class="column is-one-quarter">
+         <span class="tag is-primary">Category: {{category}}</span>
+       <span class="tag is-info">{{created_at}}</span>
+       {{user.name}}
+       asked:
+     </div>
+     <div class="column is-half">
+       <div class="content">
+         {{question_text}}
+       </div>
+     </div>
+
+     <div class="column is-one-quarter">
+       <a href="/questions/{{id}}" class="button is-success">View/Answer</a>
+     </div>
+   </div>
+ </div>
+ {{/each}}
+</script>

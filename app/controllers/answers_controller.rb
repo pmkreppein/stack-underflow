@@ -5,7 +5,10 @@ class AnswersController < ApplicationController
     @answer = @question.answers.build(answer_params)
     @answer.user_id = session[:user_id]
     if @answer.save
-      redirect_to question_path(@question)
+      respond_to do |f|
+        f.html {redirect_to question_path(@question)}
+        f.json {render json: @answer}
+      end
     else
       @answers = Answer.where(question_id: params[:question_id])
       render :"questions/show"

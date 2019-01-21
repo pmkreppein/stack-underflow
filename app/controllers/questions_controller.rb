@@ -16,6 +16,11 @@ class QuestionsController < ApplicationController
   end
 end
 
+def new
+  @question = Question.new
+end
+
+
   def create
     user = current_user
     question = user.questions.build(question_params)
@@ -31,8 +36,10 @@ end
   def show
     @answer = Answer.new
     @question = Question.find(params[:id])
-    ##@answers = Answer.where(question_id: params[:id])
-    render :show
+    respond_to do |f|
+      f.json {render json: @question, :status => 200}
+      f.html {}
+    end
   end
 
   private

@@ -1,17 +1,21 @@
+<div id="question">
 
+</div>
+
+<script id="question-template" type="text/x-handlebars-template">
 <div class="box">
   <div class="columns">
     <div class="column is-one-third">
-      <span class="tag is-info"><%= @question.created_at.to_formatted_s(:short) %></span>
-      <span class="tag is-dark">User: <%= @question.user.name %></span>
-      <span class="tag is-primary">Category: <%= @question.category%></span>
+      <span class="tag is-info">{{created_at}}</span>
+      <span class="tag is-dark">User: {{user.name}}</span>
+      <span class="tag is-primary">Category: {{category}}</span>
     </div>
     <div class="column is-one-thirds">
-      <%= @question.question_text %>
+      {{question_text}}
     </div>
   </div>
 </div>
-
+</script>
 
 <br>
 <%= form_for [@question, @answer] do |f| %>
@@ -31,14 +35,20 @@
 </ul>
 
 <span class="tag is-warning">Answers:</span>
-<% @question.answers.each do |a| %>
+<div id="answers">
+
+</div>
+
+<script id="answer-template" type="text/x-handlebars-template">
+{{#each this}}
 <div class="box">
   <div class="column is-one-third">
-    <span class="tag is-light"> <a href="<%= user_questions_path(a.user) %>">User: <%= a.user.name %></a></span>
-    <span class="tag is-info">User: <%= a.created_at.to_formatted_s(:short) %></span>
+    <span class="tag is-light"> <a href="users/{{user.id}}/questions">User:{{user.name}}</a></span>
+    <span class="tag is-info"> {{created_at}}</span>
   </div>
   <div class="column is-two-thirds">
-  <p><%= a.answer_text %></p>
+  <p>{{answer_text}}</p>
   </div>
 </div>
-<% end %>
+{{/each}}
+</script>

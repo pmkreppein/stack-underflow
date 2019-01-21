@@ -3,7 +3,7 @@ $( document ).ready(function() {
 $.ajax({
 
     type: 'GET',
-    url: "/questions.json",
+    url: '/questions.json',
     dataType: 'json',
 }).success(function(response){
   response.forEach(function(i){

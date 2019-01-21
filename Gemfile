@@ -1,6 +1,13 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
+################ PMK ADDED GEMS
+gem 'active_model_serializers' , '~> 0.10.8'
+gem 'jquery-rails', '~> 4.3'
+gem 'handlebars', '~> 0.8.0'
+gem 'handlebars_assets', '~> 0.23.2'
+gem 'rack-cors', require: 'rack/cors'
+################# END PMK ADDED GEMS
 ruby '2.3.3'
 gem "bulma-rails", "~> 0.7.2"
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -19,7 +26,7 @@ gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
-gem 'turbolinks', '~> 5'
+#gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production

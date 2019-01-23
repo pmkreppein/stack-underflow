@@ -40,7 +40,6 @@
 </div>
 
 <script id="answer-template" type="text/x-handlebars-template">
-{{#each this}}
 <div class="box">
   <div class="column is-one-third">
     <span class="tag is-light"> <a href="users/{{user.id}}/questions">User:{{user.name}}</a></span>
@@ -50,5 +49,4 @@
   <p>{{answer_text}}</p>
   </div>
 </div>
-{{/each}}
 </script>

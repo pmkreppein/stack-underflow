@@ -1,18 +1,14 @@
 $( document ).ready(function() {
-
   let jsonUrl = window.location.href + ".json";
+
+
   $.ajax({url: jsonUrl, method: 'GET', dataType: 'JSON'})
   .success(function(response){
     response.answers.forEach(function(item){
-    let x = new Answer(item)
-    let ansHtml = Answer.template(Answer.all);
-    $("div#answers").append(ansHtml);
+    let ans = new Answer(item);
+    ans.renderTemplate()
   });
 });
-
-  Answer.templateSource = $("#answer-template").html();
-  Answer.template = Handlebars.compile(Answer.templateSource);
-  Answer.all = [];
 
   $("form#new_answer").on("submit", function(e){
     e.preventDefault();
@@ -27,9 +23,7 @@ $( document ).ready(function() {
       method: "POST"
     }).success(function(json){
         let ans = new Answer(json);
-        let ansHtml = Answer.template(Answer.all);
-        $("div#answers").append(ansHtml);
-        //alert("Answer accepted, please refresh the page to provide another answer.")
+        ans.renderTemplate();
       }).error(function(response){
       console.log("There's an error!", response)
     });
@@ -41,10 +35,7 @@ $( document ).ready(function() {
           dataType: 'json',
       }).success(function(response){
         question = new Question(response);
-        let q_src = $('#question-template').html();
-        let q_template = Handlebars.compile(q_src);
-        let output = q_template(question);
-       $('div#question').append(output);
+        question.render();
       });
 
     class Question {
@@ -57,6 +48,12 @@ $( document ).ready(function() {
       }
     }
 
+    Question.prototype.render = function(){
+      templateSource = $("#question-template").html();
+      template = Handlebars.compile(templateSource);
+      $('div#question').append(template(this));
+    }
+
     function Answer(attr) {
         this.id = attr.id;
         this.created_at = attr.created_at;
@@ -64,5 +61,11 @@ $( document ).ready(function() {
         this.user = attr.user;
         Answer.all.push(this);
       }
+      Answer.prototype.renderTemplate = function(){
+        templateSource = $("#answer-template").html();
+        template = Handlebars.compile(templateSource);
+        $('div#answers').append(template(this));
+      }
 
+      Answer.all = [];
 });

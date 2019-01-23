@@ -28,4 +28,10 @@ function Question(attr) {
 }
 Question.all = [];
 
+Question.prototype.render = function(){
+  templateSource = $("#question-list-template").html();
+  template = Handlebars.compile(templateSource);
+  $('div#questions').append(template(this));
+}
+
 });

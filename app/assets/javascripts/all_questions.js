@@ -7,15 +7,9 @@ $.ajax({
     dataType: 'json',
 }).success(function(response){
   response.forEach(function(i){
-    let x = new Question(i);
+    let q = new Question(i);
+    q.render();
   });
-
-  let q_src = $('#question-list-template').html();
-  let q_template = Handlebars.compile(q_src);
-
-  let output = q_template(Question.all);
- $('div#questions').append(output);
-
 });
 
 function Question(attr) {
